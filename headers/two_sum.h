@@ -23,5 +23,5 @@ two_sum(const std::vector<int>& nums, int target)
         }
     }
 
-    return std::make_pair<int, int>(0, 1);
+    throw std::runtime_error("wrong input!");
 }
