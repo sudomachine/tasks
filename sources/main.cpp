@@ -30,18 +30,33 @@ void test_two_sum()
 void test_valid_parentheses()
 {
     std::cout << "\nValid parentheses\n";
-    auto test = [](const std::string& s)
+    auto test = [](const std::string& s, bool true_answer)
     {
-        auto answer = valid_parentheses(s);
+        auto infact_answer = valid_parentheses(s);
 
-        std::cout << "Input: s = \"" << s << "\"\n";
-        std::cout << "Output: " << (answer ? "true" : "false") << std::endl;
+        if (infact_answer == true_answer)
+        {
+            std::cout << "SUCCESS TEST: \"" << s << "\"\n";
+        }
+        else {
+            std::cout << "FAILED TEST: \"" << s << "\" - ";
+            std::cout << (infact_answer ? "valid" : "invalid");
+            std::cout << ". Must be - " << (true_answer ? "valid" : "invalid") << std::endl;
+        }
     };
 
-    test("()");
-    test("()[]{}");
-    test("(]");
-    test("]");
+    // Is valid string?
+    test("()", true);
+    test("([])", true);
+    test("([]{})", true);
+    test("([])({})", true);
+    test("({])({})", false);
+    test("[({])({})}", false);
+    test("()[]{}", true);
+    test("(]", false);
+    test("]", false);
+    test("(", false);
+    test("((", false);
 }
 
 int main(int argc, char** argv)
