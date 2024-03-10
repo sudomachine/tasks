@@ -4,6 +4,7 @@
 
 #include "two_sum.h"
 #include "valid_parentheses.h"
+#include "merge_two_sorted_lists.h"
 
 void test_two_sum()
 {
@@ -59,10 +60,47 @@ void test_valid_parentheses()
     test("((", false);
 }
 
+void test_merge_two_sorted_lists()
+{
+    std::cout << "\nMerge two sorted lists\n";
+
+    auto n = create({1,2,4});
+    auto m = create({1,3,4});
+
+    auto node = mergeTwoLists(n, m);
+    print(node);
+
+    print(mergeTwoLists(
+        create({}),
+        create({})
+    ));
+
+    print(mergeTwoLists(
+        create({}),
+        create({0})
+    ));
+
+    print(mergeTwoLists(
+        create({1,2,5}),
+        create({})
+    ));
+
+    print(mergeTwoLists(
+        create({}),
+        create({1,2,10})
+    ));
+
+    print(mergeTwoLists(
+        create({3}),
+        create({1,2,10})
+    ));
+}
+
 int main(int argc, char** argv)
 {
     test_two_sum();
     test_valid_parentheses();
+    test_merge_two_sorted_lists();
 
     return 0;
 }
