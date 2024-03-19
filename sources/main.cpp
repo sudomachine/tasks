@@ -1,10 +1,12 @@
 // https://leetcode.com/problems/two-sum/description/
 
 #include <iostream>
+#include <utility>
 
 #include "two_sum.h"
 #include "valid_parentheses.h"
 #include "merge_two_sorted_lists.h"
+#include "valid_palindrom.h"
 
 void test_two_sum()
 {
@@ -96,11 +98,58 @@ void test_merge_two_sorted_lists()
     ));
 }
 
+void test_valid_palindrom()
+{
+    std::cout << "\nValid Palindrome\n";
+
+    // test set
+    std::vector<std::pair<std::string, bool>> set {
+        {"A man, a plan, a canal: Panama", true},
+        {"race a car", false},
+        {" ", true},
+        {"a", true},
+        {"aa", true},
+        {"aaa", true},
+        {"aba", true},
+        {"aab", false},
+        {"baa", false},
+        {"aaaa", true},
+        {"abaa", false},
+        {"abba", true},
+        {"baaa", false},
+        {"aaba", false},
+        {"aaab", false},
+        {"0A", false},
+        {"0A0", true},
+        {"A0A", true}
+    };
+
+    // testing
+    for (int i = 0; i < set.size(); i++)
+    {
+        auto str = set[i].first;
+        auto true_answer = set[i].second;
+        auto infact_answer = isPalindrome(str);
+
+        if (true_answer == infact_answer)
+        {
+            std::cout << "SUCCESS TEST: \"" << str << "\"\n";
+        }
+        else {
+            std::cout << "FAILED TEST: \"" << str << "\" - ";
+            std::cout << (infact_answer ? "valid" : "invalid");
+            std::cout << ". Must be - " << (true_answer ? "valid" : "invalid") << std::endl;
+        }
+    }
+
+}
+
 int main(int argc, char** argv)
 {
     test_two_sum();
     test_valid_parentheses();
     test_merge_two_sorted_lists();
+    test_valid_palindrom();
 
     return 0;
 }
